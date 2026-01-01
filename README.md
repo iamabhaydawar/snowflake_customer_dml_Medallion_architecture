@@ -129,5 +129,5 @@ For issues or questions related to this project, please refer to the Snowflake d
 
 ## License
 
-This project is for internal use and data loading purposes.
+This project is for open source utilisation and data loading purposes.
 
