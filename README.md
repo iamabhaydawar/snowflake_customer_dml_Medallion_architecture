@@ -11,6 +11,7 @@ This project provides a complete workflow for:
 - Defining the customer dimension table schema
 - Loading customer data from CSV files into Snowflake
 - Setting up Snowpipe for automated data ingestion from Google Cloud Storage (GCS)
+- Implementing scheduled tasks for automated data transformation pipelines
 
 ## Repository Structure
 
@@ -19,6 +20,7 @@ customer-data-dml/
 ├── README.md                      # Project documentation
 ├── steps.sql                      # Snowflake DDL and setup scripts for customer data
 ├── snowpipe_testing.sql           # Snowpipe setup for automated data ingestion from GCS
+├── schedule_task.sql               # Task scheduling for automated data transformation pipeline
 └── customer_10k_good_data.csv     # Customer data file (10,000 records)
 ```
 
@@ -149,6 +151,59 @@ The `snowpipe_testing.sql` file contains scripts for setting up automated data i
 2. Configure GCS bucket notifications to publish to Pub/Sub topic
 3. Upload CSV files to the GCS bucket
 4. Snowpipe will automatically detect and load new files into the `orders_data_lz` table
+
+## Task Scheduling
+
+The `schedule_task.sql` file implements a medallion architecture (Bronze-Silver-Gold) data transformation pipeline using Snowflake Tasks. This demonstrates automated ETL workflows with scheduled execution and task dependencies.
+
+### Architecture Overview
+
+The script implements a three-layer data architecture:
+
+1. **Bronze Layer** (`raw_transactions`): Raw transaction data ingestion
+2. **Silver Layer** (`filtered_transactions`): Filtered and cleaned transaction data
+3. **Gold Layer** (`aggregated_transactions`): Aggregated business metrics
+
+### Task Components
+
+1. **filter_transactions_task**: 
+   - Scheduled to run every 1 minute
+   - Performs MERGE operation from `raw_transactions` to `filtered_transactions`
+   - Filters transactions with status 'completed' or 'refunded'
+   - Transforms timestamp to date format
+
+2. **aggregate_transactions_task**:
+   - Runs after `filter_transactions_task` completes (task dependency)
+   - Aggregates filtered transactions by date
+   - Calculates total quantity, completed transactions, and refunded transactions
+   - Performs MERGE operation into `aggregated_transactions` table
+
+### Task Dependencies
+
+The tasks are configured with dependencies:
+- `aggregate_transactions_task` depends on `filter_transactions_task`
+- Ensures data flows sequentially through the pipeline
+
+### Usage
+
+1. Execute `schedule_task.sql` in Snowflake
+2. Tasks are created in SUSPENDED state by default
+3. Resume tasks using:
+   ```sql
+   ALTER TASK filter_transactions_task RESUME;
+   ALTER TASK aggregate_transactions_task RESUME;
+   ```
+4. Monitor task execution history:
+   ```sql
+   SELECT * FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY(TASK_NAME=>'filter_transactions_task'));
+   SELECT * FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY(TASK_NAME=>'aggregate_transactions_task'));
+   ```
+
+### Prerequisites
+
+- Snowflake warehouse (`COMPUTE_WH`) must exist
+- Appropriate privileges to create tasks and tables
+- Tasks require warehouse resources for execution
 
 ## Notes
 
