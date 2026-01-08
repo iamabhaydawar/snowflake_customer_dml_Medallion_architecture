@@ -1,0 +1,32 @@
+customer_id,name,email,phone
+CUST001,John Doe,john.doe@example.com,123-456-7890
+CUST002,Jane Smith,jane.smith@example.com,123-456-7801
+CUST003,Alice Johnson,alice.johnson@example.com,123-456-7802
+CUST004,Bob Brown,bob.brown@example.com,123-456-7803
+CUST005,Charlie Davis,charlie.davis@example.com,123-456-7804
+CUST006,David Evans,david.evans@example.com,123-456-7805
+CUST007,Eva Green,eva.green@example.com,123-456-7806
+CUST008,Frank Harris,frank.harris@example.com,123-456-7807
+CUST009,Grace Lee,grace.lee@example.com,123-456-7808
+CUST010,Henry Miller,henry.miller@example.com,123-456-7809
+CUST011,Ivy King,ivy.king@example.com,123-456-7810
+CUST012,Jack Lee,jack.lee@example.com,123-456-7811
+CUST013,Kathy Miller,kathy.miller@example.com,123-456-7812
+CUST014,Larry Nelson,larry.nelson@example.com,123-456-7813
+CUST015,Monica Oliver,monica.oliver@example.com,123-456-7814
+CUST016,Nancy Parker,nancy.parker@example.com,123-456-7815
+CUST017,Oliver Quinn,oliver.quinn@example.com,123-456-7816
+CUST018,Patricia Roberts,patricia.roberts@example.com,123-456-7817
+CUST019,Quinn Smith,quinn.smith@example.com,123-456-7818
+CUST020,Rachel Taylor,rachel.taylor@example.com,123-456-7819
+CUST021,Samuel Underwood,samuel.underwood@example.com,123-456-7820
+CUST022,Tina Vaughn,tina.vaughn@example.com,123-456-7821
+CUST023,Victor Williams,victor.williams@example.com,123-456-7822
+CUST024,Wendy Xavier,wendy.xavier@example.com,123-456-7823
+CUST025,Xavier Young,xavier.young@example.com,123-456-7824
+CUST026,Yvonne Zhang,yvonne.zhang@example.com,123-456-7825
+CUST027,Zachary Adams,zachary.adams@example.com,123-456-7826
+CUST028,Amanda Brown,amanda.brown@example.com,123-456-7827
+CUST029,Brian Clark,brian.clark@example.com,123-456-7828
+CUST030,Christina Davis,christina.davis@example.com,123-456-7829
+
