@@ -1,4 +1,4 @@
-# Customer Data DML - Snowflake Data Model Loading Worksheet
+# Customer Data DML - Snowflake Data Model Loading Medellian Architecture
 
 ## Overview
 
