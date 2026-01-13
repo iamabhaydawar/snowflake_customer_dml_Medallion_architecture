@@ -1,6 +1,6 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-# Customer Data DML - Snowflake Data Model Loading Medellian Architecture
+# Customer Data DML - Snowflake Data Model Loading Medallion Architecture
 
 ## Overview
 
